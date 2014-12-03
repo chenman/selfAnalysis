@@ -1,0 +1,257 @@
+HTML {
+    OVERFLOW: auto
+}
+
+BODY {
+    OVERFLOW: auto
+}
+
+BODY {
+    COLOR: #333;
+    PADDING-BOTTOM: 0px;
+    PADDING-TOP: 0px;
+    PADDING-LEFT: 0px;
+    MARGIN: 0px;
+    PADDING-RIGHT: 0px
+}
+
+.header {
+    BACKGROUND: url(../images/common/headbg.png) repeat-x;
+    PADDING: 0px;
+    MARGIN: 0px;
+}
+
+.logo {
+    HEIGHT: 36px;
+    BACKGROUND: url(../images/common/logo.png) no-repeat;
+    FLOAT: left;
+    MARGIN-LEFT: 27px;
+    MARGIN-TOP: 5px;
+    DISPLAY: inline-block;
+    WIDTH: 105px
+}
+
+.icon_logout {
+    position:absolute;
+    MARGIN-TOP: 15px;
+    BACKGROUND: url(../images/common/icon_logout.png) no-repeat;
+    HEIGHT: 24px;
+    WIDTH: 24px;
+    right: 20px;
+    DISPLAY: inline-block;
+}
+
+.icon_logout:hover {
+    position:absolute;
+    MARGIN-TOP: 15px;
+    BACKGROUND: url(../images/common/icon_logout_h.png) no-repeat;
+    HEIGHT: 24px;
+    WIDTH: 24px;
+    right: 20px;
+    DISPLAY: inline-block;
+}
+
+.sysname {
+    HEIGHT: 36px;
+    BACKGROUND: url(../images/common/sysname.png) no-repeat;
+    MARGIN-LEFT: 32px;
+    MARGIN-TOP: 12px;
+    DISPLAY: inline-block;
+    WIDTH: 280px
+}
+
+.welcome {
+    position:absolute;
+    HEIGHT: 20px;
+    right: 160px;
+    MARGIN-TOP: 15px;
+    font-weight: normal;
+    font-size:15px;
+    DISPLAY: inline-block;
+    offset:0px;
+}
+
+.nave {
+    BORDER-TOP: medium none;
+    HEIGHT: 30px;
+    BORDER-RIGHT: medium none;
+    BACKGROUND: url(../images/common/tab_bg.png) repeat-x;
+    BORDER-BOTTOM: medium none;
+    POSITION: relative;
+    PADDING-BOTTOM: 0px;
+    PADDING-TOP: 0px;
+    PADDING-LEFT: 0px;
+    MARGIN: 0px;
+    BORDER-LEFT: medium none;
+    Z-INDEX: 5;
+    PADDING-RIGHT: 0px
+}
+
+.content-layout {
+    PADDING-BOTTOM: 0px;
+    PADDING-TOP: 0px;
+    PADDING-LEFT: 10px;
+    CLEAR: both;
+    PADDING-RIGHT: 10px
+}
+
+.menu-main {
+    CURSOR: pointer;
+    HEIGHT: 28px;
+    BACKGROUND: url(../images/common/menu.png) no-repeat;
+    FLOAT: left;
+    TEXT-ALIGN: center;
+    MARGIN-TOP: 2px;
+    DISPLAY: inline-block;
+    LINE-HEIGHT: 28px;
+    WIDTH: 75px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.arr-d {
+    OVERFLOW: hidden;
+    CURSOR: pointer;
+    FONT-SIZE: 0px;
+    BORDER-TOP: #000 4px solid;
+    HEIGHT: 0px;
+    BORDER-RIGHT: transparent 4px dashed;
+    VERTICAL-ALIGN: middle;
+    BORDER-BOTTOM: 0px;
+    PADDING-BOTTOM: 0px;
+    PADDING-TOP: 0px;
+    PADDING-LEFT: 0px;
+    MARGIN-LEFT: 5px;
+    BORDER-LEFT: transparent 4px dashed;
+    DISPLAY: inline-block;
+    PADDING-RIGHT: 0px;
+    WIDTH: 0px
+}
+
+.tabs-main {
+    FLOAT: left;
+    MARGIN-LEFT: 5px
+}
+
+.tabs-main LI {
+    POSITION: relative;
+    FLOAT: left;
+    MARGIN-LEFT: 2px;
+    Z-INDEX: 2
+}
+
+.tab {
+    CURSOR: pointer;
+    HEIGHT: 28px;
+    BACKGROUND: url(../images/common/tab.png) no-repeat left 50%;
+    PADDING-LEFT: 15px;
+    MARGIN-TOP: 2px;
+    DISPLAY: inline-block;
+    LINE-HEIGHT: 28px
+}
+
+.tab .tab-r {
+    HEIGHT: 28px;
+    BACKGROUND: url(../images/common/tab.png) no-repeat right 50%;
+    DISPLAY: inline-block;
+    PADDING-RIGHT: 8px
+}
+
+.tab .tab-c {
+    HEIGHT: 28px;
+    BACKGROUND: url(../images/common/tab_c_bg.png) repeat-x;
+    DISPLAY: inline-block
+}
+
+.tab .close {
+    HEIGHT: 13px;
+    BACKGROUND: url(../images/common/close.png) no-repeat right 2px;
+    MARGIN-LEFT: 10px;
+    DISPLAY: inline-block;
+    WIDTH: 12px
+}
+
+.tabs-main LI.selected .tab {
+    HEIGHT: 28px;
+    BACKGROUND: url(../images/common/tab_s.png) no-repeat left 50%;
+    FONT-WEIGHT: bold;
+    COLOR: #4f62ed;
+    MARGIN-TOP: 2px;
+    DISPLAY: inline-block;
+    LINE-HEIGHT: 28px
+}
+
+.tabs-main LI.selected .tab .tab-r {
+    HEIGHT: 28px;
+    BACKGROUND: url(../images/common/tab_s.png) no-repeat right 50%;
+    DISPLAY: inline-block;
+    LINE-HEIGHT: 28px
+}
+
+.tabs-main LI.selected .tab .tab-c {
+    HEIGHT: 28px;
+    BACKGROUND: url(../images/common/tab_s_bg.png) repeat-x 50% top;
+    DISPLAY: inline-block
+}
+
+.tabs-main LI.selected .tab .close {
+    BACKGROUND: url(../images/common/close_s.png) no-repeat right 2px
+}
+
+.tab-more {
+    CURSOR: pointer;
+    HEIGHT: 28px;
+    BACKGROUND: url(../images/common/tab_more.png) no-repeat;
+    MARGIN-TOP: 2px;
+    DISPLAY: inline-block;
+    WIDTH: 28px
+}
+
+.more-tabs {
+    BORDER-TOP: #d5d5d5 1px solid;
+    BORDER-RIGHT: #d5d5d5 1px solid;
+    BACKGROUND: url(../images/common/tabs_more_bg.png) #fff repeat-x 50% bottom;
+    BORDER-BOTTOM: #d5d5d5 1px solid;
+    POSITION: absolute;
+    BORDER-LEFT: #d5d5d5 1px solid;
+    Z-INDEX: 100;
+    LINE-HEIGHT: 34px;
+    TOP: 30px
+}
+
+.more-tabs LI {
+    HEIGHT: 34px;
+    ZOOM: 1;
+    LINE-HEIGHT: 34px
+}
+
+.more-tabs .blue {
+    HEIGHT: 34px;
+    FLOAT: left;
+    WIDTH: 31px;
+    BACKGROUND-COLOR: #dce7fe
+}
+
+.more-tabs .title {
+    CURSOR: pointer;
+    HEIGHT: 34px;
+    PADDING-BOTTOM: 0px;
+    PADDING-TOP: 0px;
+    PADDING-LEFT: 10px;
+    MARGIN-LEFT: 31px;
+    PADDING-RIGHT: 10px
+}
+
+.close-tabs {
+    OVERFLOW: hidden;
+    BACKGROUND: url(../images/common/tabs_more_line.png) repeat-x 50% top;
+    PADDING-TOP: 1px;
+    CLEAR: both
+}
+
+.icon-closeall {
+    BACKGROUND-IMAGE: url(../images/common/icon_closeall.png);
+    BACKGROUND-REPEAT: no-repeat;
+    BACKGROUND-POSITION: center 50%
+}
