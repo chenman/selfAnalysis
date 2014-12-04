@@ -45,25 +45,17 @@
         ]
     }, {
         "menuid" : "11",
-        "menuname" : "绩效管理",
+        "menuname" : "自助分析平台",
         "menus" : [ {
             "menuid" : "1101",
-            "menuname" : "绩效互评",
+            "menuname" : "自助取数",
             "url" : "pages/bonus/cfgBonusBatchView.jsf"
 //             "url" : "pages/bonus/cfgBonusView.jsf"
         }, {
             "menuid" : "1102",
-            "menuname" : "互评查询",
+            "menuname" : "分析日志",
             "url" : "pages/bonus/qryBonusView.jsf"
-        }, {
-            "menuid" : "1103",
-            "menuname" : "互评排名",
-            "url" : "pages/bonus/qryBonusRankView.jsf"
-        } ]
-    }, {
-        "menuid" : "11",
-        "menuname" : "周报管理",
-        "menus" : []
+        }]
     } ];
     
     function init() {

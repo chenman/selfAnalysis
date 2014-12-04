@@ -2,14 +2,5 @@
     pageEncoding="UTF-8"%>
 <%
     session.invalidate();
-    response.sendRedirect("login.jsf");
+    response.sendRedirect("login.jsf"); //重定向至登录界面
 %>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
