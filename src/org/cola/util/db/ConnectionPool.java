@@ -17,14 +17,14 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
  * @version 1.0
  */
 public class ConnectionPool {
-//    private String driverClass = "oracle.jdbc.driver.OracleDriver";
-//    private String dbUrl = "jdbc:oracle:thin:@10.51.4.68:1521:getdb";
-//    private String user = "chenman";
-//    private String password = "cm$1985";
-    private String driverClass = "com.mysql.jdbc.Driver";
-    private String dbUrl = "jdbc:mysql://localhost:3306/cola?useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true";
-    private String user = "cola";
-    private String password = "123456";
+    private String driverClass = "oracle.jdbc.driver.OracleDriver";
+    private String dbUrl = "jdbc:oracle:thin:@10.51.4.68:1521:getdb";
+    private String user = "chenman";
+    private String password = "ly#1986";
+//    private String driverClass = "com.mysql.jdbc.Driver";
+//    private String dbUrl = "jdbc:mysql://localhost:3306/cola?useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true";
+//    private String user = "cola";
+//    private String password = "123456";
     private int maxIdleTime = 60;
     private int maxPoolSize = 80;
     private int minPoolSize = 20;

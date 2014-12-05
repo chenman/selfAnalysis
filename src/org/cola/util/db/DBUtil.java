@@ -399,69 +399,18 @@ public class DBUtil {
      * @return
      * @throws SQLException
      */
-//    public DBResult executeQueryByPage(String sql, int timeOut, int start,
-//            int rowCnt) throws SQLException {
-//        Statement statement = null;
-//        ResultSet result = null;
-//        Connection connection = null;
-//        DBResult dbResult = new DBResult();
-//
-//        StringBuffer sb = new StringBuffer(1024);
-//        sb.append("select * from ( select rownum rownum_, row_.* from (");
-//        sb.append(sql);
-//        sb.append(" ) row_").append(" where rownum < ").append(start + rowCnt)
-//                .append(" ) where rownum_ >= ").append(start);
-//        try {
-//            connection = this.connectionPool.getConnection();
-//            statement = connection.createStatement(
-//                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-//                    ResultSet.CONCUR_READ_ONLY);
-//            if (timeOut > 0)
-//                statement.setQueryTimeout(timeOut);
-//            result = statement.executeQuery(sb.toString());
-//            statement.setFetchSize(2000);
-//            dbResult.iColsCnt = ((ResultSetMetaData) result.getMetaData())
-//                    .getColumnCount() - 1;
-//            result.last();
-//            dbResult.iRowsCnt = result.getRow();
-//            result.beforeFirst();
-//            dbResult.aaRes = new String[dbResult.iRowsCnt][dbResult.iColsCnt];
-//
-//            for (int k = 0; result.next(); ++k) {
-//                for (int l = 1; l <= dbResult.iColsCnt; ++l) {
-//                    String str = result.getString(l + 1);
-//                    if (str == null)
-//                        str = "";
-//                    dbResult.aaRes[k][(l - 1)] = str.trim();
-//                }
-//            }
-//        } catch (SQLException e) {
-//            afterQueryProcess(statement, connection, result);
-//            dbResult.iErrorCode = -100;
-//            throw new SQLException("sql:" + sql + " error msg:"
-//                    + e.getMessage());
-//        } finally {
-//            afterQueryProcess(statement, connection, result);
-//        }
-//        return dbResult;
-//    }
-    
     public DBResult executeQueryByPage(String sql, int timeOut, int start,
             int rowCnt) throws SQLException {
         Statement statement = null;
         ResultSet result = null;
         Connection connection = null;
         DBResult dbResult = new DBResult();
-        
-        StringBuffer sbCount = new StringBuffer(1024);
-        sbCount.append("select count(*) from (");
-        sbCount.append(sql);
-        sbCount.append(")t");
-        
+
         StringBuffer sb = new StringBuffer(1024);
-        sb.append("select * from (");
+        sb.append("select * from ( select rownum rownum_, row_.* from (");
         sb.append(sql);
-        sb.append(")t limit " + (start - 1) + "," + rowCnt);
+        sb.append(" ) row_").append(" where rownum < ").append(start + rowCnt)
+                .append(" ) where rownum_ >= ").append(start);
         try {
             connection = this.connectionPool.getConnection();
             statement = connection.createStatement(
@@ -469,26 +418,10 @@ public class DBUtil {
                     ResultSet.CONCUR_READ_ONLY);
             if (timeOut > 0)
                 statement.setQueryTimeout(timeOut);
-            result = statement.executeQuery(sbCount.toString());
-            
-            if (result != null && result.next()) {
-                dbResult.iTotalCnt = result.getInt(1);
-            } else {
-                dbResult.iTotalCnt = 0;
-            }
-            
             result = statement.executeQuery(sb.toString());
             statement.setFetchSize(2000);
-            
-            ResultSetMetaData rsmd = result.getMetaData();
-            dbResult.iColsCnt = rsmd.getColumnCount();
-            ArrayList<String> titlelist = new ArrayList<String>();
-            for (int j = 0; j < dbResult.iColsCnt; ++j) {
-                String str = rsmd.getColumnName(j + 1);
-                titlelist.add(str);
-            }
-            dbResult.titleList = titlelist;
-            
+            dbResult.iColsCnt = ((ResultSetMetaData) result.getMetaData())
+                    .getColumnCount() - 1;
             result.last();
             dbResult.iRowsCnt = result.getRow();
             result.beforeFirst();
@@ -496,7 +429,7 @@ public class DBUtil {
 
             for (int k = 0; result.next(); ++k) {
                 for (int l = 1; l <= dbResult.iColsCnt; ++l) {
-                    String str = result.getString(l);
+                    String str = result.getString(l + 1);
                     if (str == null)
                         str = "";
                     dbResult.aaRes[k][(l - 1)] = str.trim();
@@ -512,6 +445,83 @@ public class DBUtil {
         }
         return dbResult;
     }
+    
+    
+    /**
+     * MYSQL分页查询
+     * @param sql
+     * @param timeOut
+     * @param start
+     * @param rowCnt
+     * @return
+     * @throws SQLException
+     */
+//    public DBResult executeQueryByPage(String sql, int timeOut, int start,
+//            int rowCnt) throws SQLException {
+//        Statement statement = null;
+//        ResultSet result = null;
+//        Connection connection = null;
+//        DBResult dbResult = new DBResult();
+//        
+//        StringBuffer sbCount = new StringBuffer(1024);
+//        sbCount.append("select count(*) from (");
+//        sbCount.append(sql);
+//        sbCount.append(")t");
+//        
+//        StringBuffer sb = new StringBuffer(1024);
+//        sb.append("select * from (");
+//        sb.append(sql);
+//        sb.append(")t limit " + (start - 1) + "," + rowCnt);
+//        try {
+//            connection = this.connectionPool.getConnection();
+//            statement = connection.createStatement(
+//                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+//                    ResultSet.CONCUR_READ_ONLY);
+//            if (timeOut > 0)
+//                statement.setQueryTimeout(timeOut);
+//            result = statement.executeQuery(sbCount.toString());
+//            
+//            if (result != null && result.next()) {
+//                dbResult.iTotalCnt = result.getInt(1);
+//            } else {
+//                dbResult.iTotalCnt = 0;
+//            }
+//            
+//            result = statement.executeQuery(sb.toString());
+//            statement.setFetchSize(2000);
+//            
+//            ResultSetMetaData rsmd = result.getMetaData();
+//            dbResult.iColsCnt = rsmd.getColumnCount();
+//            ArrayList<String> titlelist = new ArrayList<String>();
+//            for (int j = 0; j < dbResult.iColsCnt; ++j) {
+//                String str = rsmd.getColumnName(j + 1);
+//                titlelist.add(str);
+//            }
+//            dbResult.titleList = titlelist;
+//            
+//            result.last();
+//            dbResult.iRowsCnt = result.getRow();
+//            result.beforeFirst();
+//            dbResult.aaRes = new String[dbResult.iRowsCnt][dbResult.iColsCnt];
+//
+//            for (int k = 0; result.next(); ++k) {
+//                for (int l = 1; l <= dbResult.iColsCnt; ++l) {
+//                    String str = result.getString(l);
+//                    if (str == null)
+//                        str = "";
+//                    dbResult.aaRes[k][(l - 1)] = str.trim();
+//                }
+//            }
+//        } catch (SQLException e) {
+//            afterQueryProcess(statement, connection, result);
+//            dbResult.iErrorCode = -100;
+//            throw new SQLException("sql:" + sql + " error msg:"
+//                    + e.getMessage());
+//        } finally {
+//            afterQueryProcess(statement, connection, result);
+//        }
+//        return dbResult;
+//    }
 
     public List executeProc(String sql,
             ArrayList<Map<String, Object>> paramList, int timeOut)
@@ -635,8 +645,8 @@ public class DBUtil {
         return dbResult;
     }
 
-    public String getSeq(String sql) throws SQLException {
-        StringBuffer sb = new StringBuffer("select ").append(sql).append(
+    public String getSeq(String seq) throws SQLException {
+        StringBuffer sb = new StringBuffer("select ").append(seq).append(
                 ".nextval s_srl from dual");
         DBResult dbResult = executeQuery(sb.toString(), 300);
         String str = null;
