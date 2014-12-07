@@ -19,4 +19,5 @@ public class DBResult {
     public int iTotalCnt;
     public String[][] aaRes;
     public List<String> titleList;
+    public List<Integer> typeList;
 }

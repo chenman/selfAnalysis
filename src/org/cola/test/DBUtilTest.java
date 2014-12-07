@@ -22,14 +22,22 @@ public class DBUtilTest {
             SQLException {
         DBUtil dbUtil = new DBUtil();
 
-        String sql = "select msisdn 用户号码, user_id 用户编码, to_char(create_time, 'yyyy/mm/dd hh24:mi:ss') 开打日期  from test01 where rownum < 10";
+        String sql = "select msisdn 用户号码, user_id 用户编码, to_char(create_time, 'yyyy/mm/dd hh24:mi:ss') 开打日期  from test01";
         int timeOut = 300;
 
-        DBResult dbResult = dbUtil.executeQuery(sql, timeOut);
+        DBResult dbResult = dbUtil.executeQueryByPage(sql,  timeOut, 1, 20);
+        
+        System.out.println("total rows : " + dbResult.iTotalCnt);
         if (dbResult.iErrorCode == 0) {
             Iterator<String> it = dbResult.titleList.iterator();
             while (it.hasNext()) {
                 System.out.print(it.next() + " ");
+            }
+            System.out.println();
+            
+            Iterator<Integer> itType = dbResult.typeList.iterator();
+            while (itType.hasNext()) {
+                System.out.print(itType.next() + " ");
             }
             System.out.println();
             for (int i = 0; i < dbResult.iRowsCnt; ++i) {
@@ -40,4 +48,6 @@ public class DBUtilTest {
             }
         }
     }
+    
+    
 }

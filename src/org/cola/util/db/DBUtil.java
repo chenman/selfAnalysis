@@ -203,12 +203,14 @@ public class DBUtil {
             
             ResultSetMetaData rsmd = result.getMetaData();
             dbResult.iColsCnt = rsmd.getColumnCount();
-            ArrayList<String> titlelist = new ArrayList<String>();
+            ArrayList<String> titleList = new ArrayList<String>();
+            ArrayList<Integer> typelist = new ArrayList<Integer>();
             for (int j = 0; j < dbResult.iColsCnt; ++j) {
-                String str = rsmd.getColumnName(j + 1);
-                titlelist.add(str);
+                titleList.add(rsmd.getColumnName(j + 1));
+                typelist.add(rsmd.getColumnType(j + 1));
             }
-            dbResult.titleList = titlelist;
+            dbResult.titleList = titleList;
+            dbResult.typeList = typelist;
             
             result.last();
             dbResult.iRowsCnt = result.getRow();
@@ -405,7 +407,12 @@ public class DBUtil {
         ResultSet result = null;
         Connection connection = null;
         DBResult dbResult = new DBResult();
-
+        
+		StringBuffer sbCount = new StringBuffer(1024);
+		sbCount.append("select count(*) from (");
+		sbCount.append(sql);
+		sbCount.append(")t");
+        
         StringBuffer sb = new StringBuffer(1024);
         sb.append("select * from ( select rownum rownum_, row_.* from (");
         sb.append(sql);
@@ -418,10 +425,26 @@ public class DBUtil {
                     ResultSet.CONCUR_READ_ONLY);
             if (timeOut > 0)
                 statement.setQueryTimeout(timeOut);
+            
+			result = statement.executeQuery(sbCount.toString());
+			if (result != null && result.next()) {
+				dbResult.iTotalCnt = result.getInt(1);
+			} else {
+				dbResult.iTotalCnt = 0;
+			}
+            
             result = statement.executeQuery(sb.toString());
             statement.setFetchSize(2000);
-            dbResult.iColsCnt = ((ResultSetMetaData) result.getMetaData())
-                    .getColumnCount() - 1;
+            ResultSetMetaData rsmd = result.getMetaData();
+            dbResult.iColsCnt = rsmd.getColumnCount() - 1;
+            ArrayList<String> titleList = new ArrayList<String>();
+            ArrayList<Integer> typelist = new ArrayList<Integer>();
+            for (int j = 1; j <= dbResult.iColsCnt; ++j) {
+                titleList.add(rsmd.getColumnName(j + 1));
+                typelist.add(rsmd.getColumnType(j + 1));
+            }
+            dbResult.titleList = titleList;
+            dbResult.typeList = typelist;
             result.last();
             dbResult.iRowsCnt = result.getRow();
             result.beforeFirst();
@@ -492,12 +515,12 @@ public class DBUtil {
 //            
 //            ResultSetMetaData rsmd = result.getMetaData();
 //            dbResult.iColsCnt = rsmd.getColumnCount();
-//            ArrayList<String> titlelist = new ArrayList<String>();
+//            ArrayList<String> titleList = new ArrayList<String>();
 //            for (int j = 0; j < dbResult.iColsCnt; ++j) {
 //                String str = rsmd.getColumnName(j + 1);
-//                titlelist.add(str);
+//                titleList.add(str);
 //            }
-//            dbResult.titleList = titlelist;
+//            dbResult.titleList = titleList;
 //            
 //            result.last();
 //            dbResult.iRowsCnt = result.getRow();
