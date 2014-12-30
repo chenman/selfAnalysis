@@ -1,4 +1,4 @@
-package org.cola.sa.Dao;
+package org.cola.sa.dao;
 
 /**
  * Description:
@@ -9,6 +9,6 @@ package org.cola.sa.Dao;
  * @author	ChenMan
  * @version	1.0
  */
-public class SelfAnalysisDao {
-
+public interface SelfAnalysisDao {
+	
 }

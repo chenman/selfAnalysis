@@ -1,0 +1,80 @@
+body {
+    font-size: 12px;
+    font-family: "宋体", Arial;
+    /*color: #333;*/
+    padding: 0;
+    margin: 0;
+    SCROLLBAR-FACE-COLOR: #c0cff8;
+    SCROLLBAR-HIGHLIGHT-COLOR: #EDF0F8;
+    SCROLLBAR-SHADOW-COLOR: #88A0D2;
+    SCROLLBAR-3DLIGHT-COLOR: #88A0D2;
+    SCROLLBAR-ARROW-COLOR: #3c559f;
+    SCROLLBAR-TRACK-COLOR: #EDF0F8;
+    SCROLLBAR-DARKSHADOW-COLOR: #EDF0F8;
+}
+
+.arrow_r {
+    background: url(../images/arrow_r.png) no-repeat center;
+    width: 55px;
+    height: 29px;
+    padding: 0px 20px;
+}
+.font_14F {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000000;
+    letter-spacing: 3px;
+}
+.font_title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFF;
+    padding-left: 30px;
+    padding-bottom: 2px;
+    background: #3385FF
+    /*url(../images/title_bg.jpg) no-repeat*/
+    
+    ;
+    height: 23px;
+    line-height: 23px
+}
+.td_bg {
+    background: #D8E3FC;
+}
+.p_12 {
+    padding: 12px;
+}
+.td_title {
+    font-size: 12px;
+    font-family: "宋体", Arial;
+    text-align: right;
+}
+.td_cont {
+    font-size: 12px;
+    font-family: "宋体", Arial;
+    text-align: left;
+}
+.butt_blue {
+    background: #3385FF;
+    color: #FFFFFF;
+    height: 23px;
+    line-height: 20px;
+    border: 1px solid #2D78F4;
+    padding: 0px 15px !important;
+    margin: 0px 10px;
+    _padding: 0px 10px;
+    _margin: 0px 0px;
+    *padding: 0px 10px;
+    *margin: 0px 0px;
+    cursor: pointer;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+
+table {
+    font-family: "宋体";
+    font-size: 12px;
+    color: #000000;
+    text-decoration: none;
+}

@@ -7,5 +7,6 @@
     <create creator="new" javascript="SelfAnalysisClient">
       <param name="class" value="org.cola.sa.SelfAnalysisClient"/>
     </create>
+    <convert converter="bean" match="org.cola.sa.bean.*"/>
   </allow>
 </dwr>

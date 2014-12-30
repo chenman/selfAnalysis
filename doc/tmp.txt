@@ -1,0 +1,2 @@
+http://localhost:8080/selfAnalysis/dwr
+http://localhost:8080/selfAnalysis/pages/label/accessIndex.jsp
