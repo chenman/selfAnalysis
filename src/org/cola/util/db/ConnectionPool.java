@@ -18,9 +18,11 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
  */
 public class ConnectionPool {
     private String driverClass = "oracle.jdbc.driver.OracleDriver";
-    private String dbUrl = "jdbc:oracle:thin:@192.168.152.131:1521:orcl";
+//    private String dbUrl = "jdbc:oracle:thin:@192.168.152.131:1521:orcl";
+    private String dbUrl = "jdbc:oracle:thin:@10.51.4.68:1521:getdb";
     private String user = "chenman";
-    private String password = "860307";
+//    private String password = "860307";
+    private String password = "ly#1986";
 //    private String driverClass = "com.mysql.jdbc.Driver";
 //    private String dbUrl = "jdbc:mysql://localhost:3306/cola?useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true";
 //    private String user = "cola";

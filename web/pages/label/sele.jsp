@@ -7,11 +7,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>选择元素</title>
-<script src="<%=path%>/js/jquery.min.js"></script>
-<script src="<%=path%>/js/jquery.compatible.js"></script>
-<script type="text/javascript" src="/selfAnalysis/dwr/interface/SelfAnalysisClient.js"></script>
-<script type="text/javascript" src="/selfAnalysis/dwr/engine.js"></script>
-<script type="text/javascript" src="/selfAnalysis/dwr/util.js"></script>
+<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
+<script type="text/javascript" src="<%=path%>/js/jquery.compatible.js"></script>
+<script type="text/javascript" src="<%=path%>/dwr/interface/SelfAnalysisClient.js"></script>
+<script type="text/javascript" src="<%=path%>/dwr/engine.js"></script>
+<script type="text/javascript" src="<%=path%>/dwr/util.js"></script>
+<script type="text/javascript" src="<%=path%>/js/UtilTool.js"></script>
 <script type="text/javascript" src="<%=path%>/js/NLComponent/table/com.newland.table.NLTable.min.js"></script>
 <link type="text/css" href="<%=path%>/js/NLComponent/table/com.newland.table.NLTable.css" rel="stylesheet" />
 <link type="text/css" href="<%=path%>/css/main.css" rel="stylesheet" />
@@ -148,9 +149,10 @@
 	} ];
 
 	$(function() {
-        useHeight = $(window).height() - 100;
-        alert(useHeight);
-        document.getElementById("system_attr_table").style.height = useHeight + "px";
+		useHeight = $(window).height() - 100;
+		//        alert(useHeight);
+		document.getElementById("system_attr_table").style.height = useHeight
+				+ "px";
 		if (SaSource != undefined) {
 			try {
 				var t = SaSource.getAttrTreeLeafNode();
@@ -236,7 +238,46 @@
 				}
 			}
 		});
+
+		queryFrameList();
+		queryAttrClassList();
 	});
+
+	function queryFrameList() {
+		SelfAnalysisClient.queryFrameList(function(frameList) {
+			if (!util.isNull(frameList)) {
+				var bean;
+				for (var i = 0; i < frameList.length; i++) {
+					bean = frameList[i];
+					util.addSelectOption("qry_frame_id", bean.frameName,
+							bean.frameId);
+				}
+				util.selectedOption("qry_frame_id", "");
+			}
+		});
+	}
+
+    var attrClassList;
+	function queryAttrClassList() {
+		SelfAnalysisClient.queryAttrClassList(function(resultList) {
+			attrClassList = resultList;
+		});
+	}
+	
+    function getAttrClass(frameId) {
+        if (!util.isNull(attrClassList) && attrClassList.length > 0 && !util.isNull(frameId)) {
+            util.clearSelect("qry_attr_class_id");
+            util.addSelectOption("qry_attr_class_id", "--请选择--", "null");
+            for (var i = 0; i < attrClassList.length; i++) {
+                if (attrClassList[i].frameId == frameId) {
+                    util.addSelectOption("qry_attr_class_id", attrClassList[i].attrClassName, attrClassList[i].attrClassId);
+                }
+            }
+        } else {
+            util.clearSelect("qry_attr_class_id");
+            util.addSelectOption("qry_attr_class_id", "--请选择--", "null");
+        }
+    }
 
 	function doSearch() {
 		system_table.mask();
@@ -282,7 +323,7 @@
 			});
 		});
 	}
-	
+
 	/**
 	 *搜索属性列表(分页)
 	 *type:1:搜索系统属性 2：模糊搜索
@@ -294,7 +335,7 @@
 			frameId : null,
 			attrClassId : null,
 			detailSwitch : 1,
-            cycleType : null,
+			cycleType : null,
 			packageId : null
 		};
 		if (type == 1) { //搜索系统属性
@@ -332,7 +373,7 @@
 			attrReqBean.importId = importId;
 			attrReqBean.attrClassId = attrClassId;
 			attrReqBean.cycleType = cycleType;
-            
+
 			QueryAnalysisClient.queryAttrList(1, attrReqBean, start, pernum,
 					function(dataArr) {
 						QueryAnalysisClient.getTotalCount(function(total) {
@@ -350,17 +391,17 @@
 		}
 	}
 
-    /**
-     *长口径显示处理
-     */
-    function longTextDeal(param) {
-        var data = param.grid.getRowData(param.tr_object)[0];
-        var text = data.busInfo;
-        if (text != null && text.length > 10) {
-            text = text.substring(0, 10) + "...";
-        }
-        jQuery(param.div_object).html(text);
-    }
+	/**
+	 *长口径显示处理
+	 */
+	function longTextDeal(param) {
+		var data = param.grid.getRowData(param.tr_object)[0];
+		var text = data.busInfo;
+		if (text != null && text.length > 10) {
+			text = text.substring(0, 10) + "...";
+		}
+		jQuery(param.div_object).html(text);
+	}
 </script>
 </head>
 <body>
@@ -380,12 +421,12 @@
                                 <tr>
                                     <td class="td_title" width="12%">分析框架:</td>
                                     <td class="td_cont" width="15%"><select id="qry_frame_id" name="qry_frame_id"
-                                        style="width: 120px">
+                                        style="width: 120px" onchange="getAttrClass(this.value)">
                                             <option value="">--请选择--</option>
                                     </select></td>
                                     <td class="td_title" width="12%">属性分类:</td>
-                                    <td class="td_cont" width="15%"><select id="qry_qry_attr_class_id"
-                                        name=""qry_qry_attr_class_id"" style="width: 120px">
+                                    <td class="td_cont" width="15%"><select id="qry_attr_class_id"
+                                        name="qry_attr_class_id" style="width: 120px">
                                             <option value="">--请选择--</option>
                                     </select></td>
                                     <td class="td_cont" width="15%"><select id="qry_circle_type"

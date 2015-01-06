@@ -1,14 +1,15 @@
 package org.cola.sa;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.cola.sa.bean.AttrClassBean;
 import org.cola.sa.bean.AttrBean;
-import org.cola.sa.bean.FrameBean;
 import org.cola.sa.bean.QryAttrBean;
 
 import com.alibaba.fastjson.JSON;
+import org.cola.sa.dao.SelfAnalysisDao;
+import org.cola.sa.dao.SelfAnalysisDaoImpl;
 
 /**
  * Description: <br/>
@@ -22,6 +23,8 @@ import com.alibaba.fastjson.JSON;
  */
 public class SelfAnalysisClient {
 
+	SelfAnalysisDao dao = new SelfAnalysisDaoImpl();
+
 	public String queryAttrList(QryAttrBean qryBean) {
 		List<AttrBean> list = new ArrayList<AttrBean>();
 		AttrBean bean = new AttrBean();
@@ -29,15 +32,23 @@ public class SelfAnalysisClient {
 		return JSON.toJSONString(list);
 	}
 
-	public String queryFrameList() {
-		List<FrameBean> list = new ArrayList<FrameBean>();
-
-		return JSON.toJSONString(list);
+	public List queryFrameList() {
+		List list = null;
+		try {
+			list = dao.queryFrameList();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
-	public String getAttrClassList(String frameId) {
-		List<AttrClassBean> list = new ArrayList<AttrClassBean>();
-
-		return JSON.toJSONString(list);
+	public List queryAttrClassList() {
+		List list = null;
+		try {
+			list = dao.queryAttrClassList();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

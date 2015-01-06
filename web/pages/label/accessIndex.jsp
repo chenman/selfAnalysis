@@ -8,9 +8,9 @@
 <title>自助分析</title>
 <link href="<%=path%>/css/main.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
-<script type='text/javascript' src='/selfAnalysis/dwr/interface/SelfAnalysisClient.js'></script>
-<script type='text/javascript' src='/selfAnalysis/dwr/engine.js'></script>
-<script type='text/javascript' src='/selfAnalysis/dwr/util.js'></script>
+<script type='text/javascript' src='<%=path%>/dwr/interface/SelfAnalysisClient.js'></script>
+<script type='text/javascript' src='<%=path%>/dwr/engine.js'></script>
+<script type='text/javascript' src='<%=path%>/dwr/util.js'></script>
 <script type="text/javascript">
 	var divHeight = ($(window).height() - 110) + "px";
 	var save_type = "add";
