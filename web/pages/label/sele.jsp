@@ -42,22 +42,6 @@
 		isKey : false,
 		isData : true
 	}, {
-		display : '时间周期',
-		name : 'cycleType',
-		align : 'center',
-		width : "100px",
-		hide : true,
-		isKey : false,
-		isData : true
-	}, {
-		display : '时间周期',
-		name : 'cycleTypeName',
-		align : 'center',
-		width : "12%",
-		hide : false,
-		isKey : false,
-		isData : true
-	}, {
 		display : '分析框架编码',
 		name : 'frameId',
 		align : 'left',
@@ -99,6 +83,22 @@
 		isData : true,
 		fireEvent : longTextDeal
 	}, {
+        display : '更新周期',
+        name : 'cycleType',
+        align : 'center',
+        width : "100px",
+        hide : true,
+        isKey : false,
+        isData : true
+    }, {
+        display : '更新周期',
+        name : 'cycleTypeName',
+        align : 'center',
+        width : "12%",
+        hide : false,
+        isKey : false,
+        isData : true
+    }, {
 		display : '是否维度',
 		name : 'isDim',
 		align : 'left',
@@ -143,7 +143,7 @@
 		name : 'loadDate',
 		align : 'left',
 		width : "200px",
-		hide : true,
+		hide : false,
 		isKey : false,
 		isData : true
 	} ];
